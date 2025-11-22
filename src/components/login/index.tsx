@@ -1,25 +1,32 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AUTH_LOGIN } from '../../actions/auth.actions'
 import type { RootState, AppDispatch } from '../../store/index'
+import {isEmpty} from 'ramda'
+import { useNavigate } from "react-router-dom";
 import '../../stylesheet/login/login.scss'
 
 const Login: React.FC = () => {
   const [value, setValue] = useState({ email: '', password: '' })
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>()
 
-  // Leer estado de auth (loading y error)
-  const { loading } = useSelector((state: RootState) => state.auth)
+  const { loading, auth } = useSelector((state: RootState) => state.auth)
 
   const onHandleLogin = () => {
-    console.log("prueba")
-    dispatch(AUTH_LOGIN(value))
+   dispatch(AUTH_LOGIN(value))
   }
+
+  useEffect(()=>{
+    if(!isEmpty(auth.token)){
+      localStorage.setItem("token", auth.token);
+      navigate("/home");
+    } 
+  },[auth])
 
   return (
     <div className="login">
       <div>Album Compartido</div>
-
       <div>
         <input
           placeholder="Correo Electronico"
@@ -34,9 +41,7 @@ const Login: React.FC = () => {
           onChange={(e) => setValue({ ...value, password: e.target.value })}
         />
       </div>
-
       {loading && <p>Cargando...</p>}
-
       <div>
         <button onClick={onHandleLogin} disabled={loading}>
           Iniciar sesión
