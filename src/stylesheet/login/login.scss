@@ -1,10 +1,32 @@
+@import  "./../common/inputs.scss";
+@import  "./../common/buttons.scss";
+
 .login{
-    width: 50%;
+    height: 100vh;  
+    width: 100%;
+    background-color: #051132;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    &_header{
-        color: black;
+    justify-content: center;
+    position: relative; 
+    &_content {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20vh;  
+        gap: 20px;
+        &-contentImg{  
+            width: 100%;
+            &_img{
+                width: 100%;
+            }
+        }
+        &_contentInputs{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+        }
     }
+   
 }

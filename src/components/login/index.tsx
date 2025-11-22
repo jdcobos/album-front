@@ -4,6 +4,7 @@ import { AUTH_LOGIN } from '../../actions/auth.actions'
 import type { RootState, AppDispatch } from '../../store/index'
 import {isEmpty} from 'ramda'
 import { useNavigate } from "react-router-dom";
+import logo from './../../assets/logo.svg'
 import '../../stylesheet/login/login.scss'
 
 const Login: React.FC = () => {
@@ -26,26 +27,32 @@ const Login: React.FC = () => {
 
   return (
     <div className="login">
-      <div>Album Compartido</div>
-      <div>
-        <input
-          placeholder="Correo Electronico"
-          type="text"
-          value={value.email}
-          onChange={(e) => setValue({ ...value, email: e.target.value })}
-        />
-        <input
-          placeholder="Contraseña"
-          type="password"
-          value={value.password}
-          onChange={(e) => setValue({ ...value, password: e.target.value })}
-        />
-      </div>
-      {loading && <p>Cargando...</p>}
-      <div>
-        <button onClick={onHandleLogin} disabled={loading}>
-          Iniciar sesión
-        </button>
+      <div className='login_content'>
+        <div className='login_content-contentImg'>
+          <img className='login_content-contentImg_img' src={logo} alt='logo'/>
+        </div>
+        <div className='login_content_contentInputs'>
+          <input
+            className='input_primary'
+            placeholder="Correo Electronico"
+            type="text"
+            value={value.email}
+            onChange={(e) => setValue({ ...value, email: e.target.value })}
+          />
+          <input
+          className='input_primary'
+            placeholder="Contraseña"
+            type="password"
+            value={value.password}
+            onChange={(e) => setValue({ ...value, password: e.target.value })}
+          />
+        </div>
+        {loading && <p>Cargando...</p>}
+        <div>
+          <button className='buttons_primary' onClick={onHandleLogin} disabled={loading}>
+            Iniciar sesión
+          </button>
+        </div>
       </div>
     </div>
   )
