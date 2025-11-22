@@ -1,7 +1,9 @@
+import NavigateBar from "../navigationBar"
+
 const Home = () => {
     return(
         <div>
-            Home 
+         <NavigateBar/>
         </div>
     )
 }

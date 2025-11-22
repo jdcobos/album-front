@@ -1,0 +1,25 @@
+.navigationBar{
+    background-color: white;
+    position:absolute;
+    bottom: 0px;
+    width: 100%;
+    border-top: 1px solid rgb(206, 206, 206);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    z-index: 10;
+
+    &_item{
+      padding: 10px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &-img{
+        width: 30%;
+      }
+    }
+}
