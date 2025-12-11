@@ -1,4 +1,6 @@
 export interface Irequest  {
+    authorization?: boolean,
     method: string,
-    params?: object
+    route: string,
+    params?: object,
 }

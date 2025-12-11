@@ -1,6 +1,6 @@
-import Home from './../../assets/icons/Home.svg'
-import ArrowSquareUp from './../../assets/icons/ArrowSquareUp.svg'
-import Profile from './../../assets/icons/Profile.svg'
+import Home from './../../src/assets/icons/Home.svg'
+import ArrowSquareUp from './../../src/assets/icons/ArrowSquareUp.svg'
+import Profile from './../../src/assets/icons/Profile.svg'
 
 const NAVIGATE_BAR = [
     {

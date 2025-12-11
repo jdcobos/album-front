@@ -1,0 +1,30 @@
+.collapsibleText {
+  width: 100%;
+  position: relative;
+
+  &_text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.3s ease;
+    margin: 0px;
+    font-size: 10px;
+    /* Asegurar que el botón esté inline dentro del texto */
+  }
+
+  &_textShow {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+    font-size: 10px;
+  }
+
+  &_button {
+    color: #000000;
+    cursor: pointer;
+    font-size: 9px;
+    display: inline; /* cambiar a inline para que quede al final del texto */
+    margin-left: 3px; /* pequeño espacio desde la última palabra */
+    margin: 0px;
+  }
+}

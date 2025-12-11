@@ -1,0 +1,12 @@
+.card{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  &_img{
+      width: 100%;    
+      height: auto;    
+      object-fit: contain; 
+      display: block;
+    }
+
+}

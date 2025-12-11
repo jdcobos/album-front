@@ -7,7 +7,7 @@ export const AUTH_LOGIN = createAsyncThunk(
   AUTH_ACTIONS.AUTH_LOGIN,
   async (params: { email: string; password: string }, thunkAPI) => {
     try {
-      const response = await Request({ method: METHODS_HTTPS.POST, params })
+      const response = await Request({authorization:false, method: METHODS_HTTPS.POST, route:"auth/login", params })
       return response.data
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response?.data?.message || "Error de login")

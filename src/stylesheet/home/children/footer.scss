@@ -1,0 +1,26 @@
+.footer{
+    display: flex;
+    flex-direction: column;
+    &_body{
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        &-description{
+            font-size: 12px;
+             display: -webkit-box;
+            -webkit-line-clamp: 3;   /* número máximo de líneas */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            span{
+              font-weight: 700;
+            } 
+        };
+        &-date{
+            color: #8f8f8f;
+            font-size: 12px;
+            font-weight: 500;
+        }
+    }
+}
