@@ -1,34 +1,18 @@
-import { useEffect } from 'react'
+import {useState} from 'react'
 import NavigateBar from "../navigationBar"
-import { useDispatch, useSelector } from 'react-redux'
-import type { RootState, AppDispatch } from '../../store/index'
-import { GET_MULTIMEDIA } from '../../actions/multimedia.actions'
-import {isEmpty} from 'ramda'
-import Card from './children/card.component'
 import "../../stylesheet/home/home.scss"
 import Header from './children/header.component'
+import { VIEWS } from '../../schemas/views.schema'
 const Home = () => {
-      const dispatch = useDispatch<AppDispatch>()
-      const { loading, multimedia } = useSelector((state: RootState) => state.multimedia)
     
-      useEffect(()=>{
-         if(isEmpty(multimedia)){
-            dispatch(GET_MULTIMEDIA())
-         }
-      },[multimedia]
-    )
+    const [tab, setTab] = useState(0)
+    const CurrentView = VIEWS[tab].Component;
      
     return(
         <div className='home'>
-            {loading ? "cargando...": 
-            <>
-                <Header/>
-                    <div className='cards-container'>
-                        {multimedia.map((item)=> <Card {...item}/> )}
-                    </div>
-                 <NavigateBar/>
-            </> 
-            }
+            <Header/>
+            <CurrentView/>
+            <NavigateBar currentTab={tab} onChange={setTab}/>
         </div>
     )
 }
