@@ -23,9 +23,11 @@ const Home = () => {
             {loading ? "cargando...": 
             <>
                 <Header/>
-                {multimedia.map((item)=> <Card {...item}/> )}
-                <NavigateBar/>
-            </>
+                    <div className='cards-container'>
+                        {multimedia.map((item)=> <Card {...item}/> )}
+                    </div>
+                 <NavigateBar/>
+            </> 
             }
         </div>
     )

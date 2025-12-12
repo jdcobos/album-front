@@ -7,7 +7,6 @@ import { GET_LIKE, LIKE_MULTIMEDIA } from '../../../actions/multimedia.actions'
 import { useDispatch } from 'react-redux'
 
 const Action = ({userId, multimediaId, totalLikes} : any) => {
-    console.log(totalLikes)
     const dispatch = useDispatch<AppDispatch>()
     const [like, setLike] = useState(false)
 
