@@ -22,7 +22,7 @@ const Multimedia = () => {
             {loading ? "cargando...": 
             <>
                 <div className='cards-container'>
-                    {multimedia.map((item)=> <Card {...item}/> )}
+                    {multimedia.map((item: any)=> <Card {...item}/> )}
                 </div>
             </> 
             }
