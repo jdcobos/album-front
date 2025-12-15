@@ -1,4 +1,4 @@
-import Multimedia from "../components/multimedia/indes"
+import Multimedia from "../components/multimedia"
 import PhotoWall from "../components/photoWall"
 export const VIEWS = [
     {

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { RootState, AppDispatch } from '../../store/index'
 import { GET_MULTIMEDIA } from '../../actions/multimedia.actions'
 import {isEmpty} from 'ramda'
-import Card from './../home/children/card.component'
+import Card from '../home/children/card.component'
 import "../../stylesheet/home/home.scss"
 
 const Multimedia = () => {
