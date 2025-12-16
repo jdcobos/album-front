@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Header from "../home/children/header.component"
 import "../../stylesheet/register/register.scss"
 import type { AppDispatch } from "../../store"
