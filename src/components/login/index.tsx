@@ -25,6 +25,10 @@ const Login: React.FC = () => {
     } 
   },[auth])
 
+  const register = () => {
+    navigate("/register");
+  }
+
   return (
     <div className="login">
       <div className='login_content'>
@@ -34,7 +38,7 @@ const Login: React.FC = () => {
         <div className='login_content_contentInputs'>
           <input
             className='input_primary'
-            placeholder="Correo Electronico"
+            placeholder="Correo Electrónico"
             type="text"
             value={value.email}
             onChange={(e) => setValue({ ...value, email: e.target.value })}
@@ -48,7 +52,8 @@ const Login: React.FC = () => {
           />
         </div>
         {loading && <p>Cargando...</p>}
-        <div>
+        <div className='login_button'>
+          <div onClick={() =>register()}>¿No tienes cuenta? click aquí</div>
           <button className='buttons_primary' onClick={onHandleLogin} disabled={loading}>
             Iniciar sesión
           </button>

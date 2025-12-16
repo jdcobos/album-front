@@ -28,5 +28,12 @@
             gap: 10px;
         }
     }
-   
+    &_button{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        color: white;
+        font-size: 12px;
+    }
 }

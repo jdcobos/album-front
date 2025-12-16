@@ -1,0 +1,32 @@
+.register{
+    &_content{
+        height: 100vh;
+        &_card{
+            display: flex;
+            flex-direction: column;
+            padding: 10%;
+            gap: 10px;
+            text-align: center;
+        }
+        &_headerCard{
+            background-color: #051132;
+            color: white;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        &_textCard{
+            font-size: 14px;
+        }
+
+        &_button{
+            background-color: #051132;
+            color: white;
+            width: 40%;
+            margin: auto;
+            border-radius: 5px;
+            height: 2rem;
+        }
+    }
+}

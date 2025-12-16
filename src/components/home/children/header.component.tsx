@@ -3,7 +3,7 @@ import "../../../stylesheet/home/children/header.scss"
 const Header = () => {
     return(
         <div className="header">
-            Album compartido
+            Mis 15
         </div>
     )
 }
