@@ -15,7 +15,11 @@ const Login: React.FC = () => {
   const { loading, auth } = useSelector((state: RootState) => state.auth)
 
   const onHandleLogin = () => {
-   dispatch(AUTH_LOGIN(value))
+   dispatch(AUTH_LOGIN(value)).then((value)=>{
+    if(value.payload === "Error de login") {
+      alert("Usuario o contraseña incorrecta")
+    }
+   })
   }
 
   useEffect(()=>{
