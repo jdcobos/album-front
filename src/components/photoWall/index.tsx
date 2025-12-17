@@ -5,6 +5,11 @@ import { GET_MULTIMEDIA } from "../../actions/multimedia.actions"
 import { useEffect } from "react"
 import '../../stylesheet/photoWall/photoWall.scss'
 
+export interface MultimediaItem {
+  src: string
+
+}
+
 const PhotoWall = () => {
     const dispatch = useDispatch<AppDispatch>()
       const { loading, multimedia } = useSelector((state: RootState) => state.multimedia)
@@ -20,7 +25,7 @@ const PhotoWall = () => {
         <>
             {!loading ? (
             <>
-                {multimedia.map((item) => (
+                {multimedia.map((item: MultimediaItem) => (
                 <div className="photoWall_card">
                     <img src={item?.src} />
                 </div>
