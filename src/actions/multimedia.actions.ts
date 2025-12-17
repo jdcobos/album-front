@@ -3,6 +3,11 @@ import { METHODS_HTTPS } from "../constant/methods";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {MULTIMEDIA_ACTIONS} from "../actionsTypes/multimedia.actionsTypes";
 
+export interface Ilike  {
+  multimediaId: string,
+  userId: string
+}
+
 export const GET_MULTIMEDIA = createAsyncThunk(
   MULTIMEDIA_ACTIONS.MULTIMEDIA,
   async (_, thunkAPI) => {
@@ -29,14 +34,19 @@ export const LIKE_MULTIMEDIA = createAsyncThunk(
 
 export const GET_LIKE = createAsyncThunk(
   MULTIMEDIA_ACTIONS.GET_LIKE,
-  async (multimediaId: string, thunkAPI) => {
+  async (params: Ilike, thunkAPI) => {
     try {
-      const response = await Request({ method: METHODS_HTTPS.GET, route: `like/${multimediaId}`})
-      return response.data
+      if (!params.userId) return thunkAPI.rejectWithValue("userId no proporcionado");
+
+      const response = await Request({
+        method: METHODS_HTTPS.GET,
+        route: `like?multimediaId=${params.multimediaId}&userId=${params.userId}`,
+      });
+
+      return response.data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response?.data?.message || "Error de login")
+      return thunkAPI.rejectWithValue(error.response?.data?.message || "Error de login");
     }
   }
-)
-
+);
 

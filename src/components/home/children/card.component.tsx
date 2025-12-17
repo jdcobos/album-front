@@ -6,7 +6,7 @@ const Card = ({createdAt, description,src, userId, _id, likes}: any) => {
     return(
         <div className="card">
           <img className="card_img" src={src}/>
-          <Action userId={userId._id} multimediaId={_id} totalLikes={likes}/>
+          <Action  multimediaId={_id} totalLikes={likes}/>
           <Footer date={createdAt} description={description} name={userId.name} />
         </div>
     )

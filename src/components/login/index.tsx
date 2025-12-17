@@ -25,6 +25,7 @@ const Login: React.FC = () => {
   useEffect(()=>{
     if(!isEmpty(auth.token)){
       localStorage.setItem("token", auth.token);
+      localStorage.setItem("id", auth.user.id);
       navigate("/home");
     } 
   },[auth])
