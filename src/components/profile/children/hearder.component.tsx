@@ -5,7 +5,7 @@ import type { AppDispatch, RootState } from "../../../store"
 import { useEffect } from "react"
 const Header = () => {
     const dispatch = useDispatch<AppDispatch>()
-    const {  user } = useSelector((state: RootState) => state.user)
+    const {  user } = useSelector((state: any) => state.user)
         const {  countUsers } = useSelector((state: RootState) => state.multimedia)
     const id = localStorage.getItem("id");
 
