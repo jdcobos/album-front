@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux'
 const Action = ({ multimediaId, totalLikes} : any) => {
     const dispatch = useDispatch<AppDispatch>()
     const [like, setLike] = useState(false)
-     const id = localStorage.getItem("id");
+    const id = localStorage.getItem("id");
 
    const onChangeLike = (like: boolean) => {
         if (!id) return;

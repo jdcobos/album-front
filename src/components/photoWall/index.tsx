@@ -12,7 +12,7 @@ export interface MultimediaItem {
 
 const PhotoWall = () => {
     const dispatch = useDispatch<AppDispatch>()
-      const { loading, multimedia } = useSelector((state: RootState) => state.multimedia)
+    const { loading, multimedia } = useSelector((state: RootState) => state.multimedia)
     
       useEffect(()=>{
          if(isEmpty(multimedia)){

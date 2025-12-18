@@ -8,6 +8,10 @@ export interface Ilike  {
   userId: string
 }
 
+export interface IMultimedia  {
+  userId: string
+}
+
 export const GET_MULTIMEDIA = createAsyncThunk(
   MULTIMEDIA_ACTIONS.MULTIMEDIA,
   async (_, thunkAPI) => {
@@ -49,4 +53,23 @@ export const GET_LIKE = createAsyncThunk(
     }
   }
 );
+
+export const GET_MULTIMEDIA_BY_USER = createAsyncThunk(
+  MULTIMEDIA_ACTIONS.GET_MULTIMEDIA_BY_USER,
+  async (params: IMultimedia, thunkAPI) => {
+    try {
+      const response = await Request({
+        method: METHODS_HTTPS.GET,
+        route: `multimedia/byUser/${params.userId}`,
+      });
+
+      return response.data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || "Error al obtener multimedia"
+      );
+    }
+  }
+);
+
 

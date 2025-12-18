@@ -1,5 +1,6 @@
 import Multimedia from "../components/multimedia"
 import PhotoWall from "../components/photoWall"
+import Profile from "../components/profile"
 export const VIEWS = [
     {
         Component: Multimedia
@@ -8,6 +9,6 @@ export const VIEWS = [
         Component: PhotoWall
     },
         {
-        Component: Multimedia
+        Component: Profile
     }
 ]
