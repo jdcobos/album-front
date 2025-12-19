@@ -37,7 +37,7 @@ const Card = () => {
                 Agregar un nuevo momento
              </div>}
           </>
-          <AddMultimedia open={open}/>
+          <AddMultimedia open={open} setOpen={setOpen}/>
       </div>
     </Fragment>
   );
