@@ -26,7 +26,9 @@ const AddMultimedia = ({ open, setOpen }: any) => {
   const [openPopup, setOpenPopup] = useState(open);
   const [fileList, setFileList] = useState<any[]>([]);
   const [showCamera, setShowCamera] = useState(false);
+  const [facingMode, setFacingMode] = useState<"user" | "environment">("user");
   const webcamRef = useRef<Webcam>(null);
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   useEffect(() => {
     setOpenPopup(open);
@@ -96,10 +98,16 @@ const AddMultimedia = ({ open, setOpen }: any) => {
     });
   };
 
+  const toggleCamera = useCallback(() => {
+    setFacingMode(prev => prev === "user" ? "environment" : "user");
+  }, []);
+
   const videoConstraints = {
     width: window.innerWidth,
     height: window.innerHeight,
-    facingMode: "user",
+    facingMode: {
+      exact: facingMode
+    },
     aspectRatio: window.innerWidth / window.innerHeight,
   };
 
@@ -131,9 +139,25 @@ const AddMultimedia = ({ open, setOpen }: any) => {
                 ...videoConstraints,
                 aspectRatio: 9 / 16,
               }}
+              data-facingside={facingMode}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                transform: facingMode === 'user' ? 'scaleX(-1)' : 'none',
+                WebkitTransform: facingMode === 'user' ? 'scaleX(-1)' : 'none',
+              }}
             />
           </MobileFrame>
           <div className="profile-camera-controls">
+            {isMobile && (
+              <Button
+                onClick={toggleCamera}
+                className="profile-switch-camera-button"
+              >
+                🔄
+              </Button>
+            )}
             <Button
               onClick={capture}
               className="profile-capture-button"

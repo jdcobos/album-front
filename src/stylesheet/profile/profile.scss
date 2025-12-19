@@ -45,8 +45,34 @@
       right: 0;
       display: flex;
       justify-content: center;
+      align-items: center;
       gap: 20px;
       z-index: 10000;
+    }
+
+    &-switch-camera-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      left: 50px;
+      z-index: 1001;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      padding: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid white;
+      font-size: 20px;
+      backdrop-filter: blur(5px);
+      transition: all 0.2s ease;
+
+      &:active {
+        transform: scale(0.95);
+      }
     }
 
     &-capture-button {
@@ -128,11 +154,28 @@
   border-radius: 8px;
   aspect-ratio: 9/16;
   max-height: 80vh;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-perspective: 1000;
 
   video, img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: none;
+    -webkit-transform: none;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Apply mirror effect only to front camera */
+  video[data-facingside="user"] {
     transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
   }
 }
