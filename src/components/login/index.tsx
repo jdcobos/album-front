@@ -2,14 +2,16 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AUTH_LOGIN } from '../../actions/auth.actions'
 import type { RootState, AppDispatch } from '../../store/index'
-import {isEmpty} from 'ramda'
-import { useNavigate } from "react-router-dom";
+import { isEmpty } from 'ramda'
+import { useNavigate } from "react-router-dom"
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import logo from './../../assets/logo.svg'
 import '../../stylesheet/login/login.scss'
 
 const Login: React.FC = () => {
   const [value, setValue] = useState({ email: '', password: '' })
-  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false)
+  const navigate = useNavigate()
   const dispatch = useDispatch<AppDispatch>()
 
   const { loading, auth } = useSelector((state: RootState) => state.auth)
@@ -48,15 +50,25 @@ const Login: React.FC = () => {
             value={value.email}
             onChange={(e) => setValue({ ...value, email: e.target.value })}
           />
-          <input
-          className='input_primary'
-            placeholder="Contraseña"
-            type="password"
-            value={value.password}
-            onChange={(e) => setValue({ ...value, password: e.target.value })}
-          />
+          <div className="password-input-container">
+            <input
+              className='input_primary'
+              placeholder="Contraseña"
+              type={showPassword ? 'text' : 'password'}
+              value={value.password}
+              onChange={(e) => setValue({ ...value, password: e.target.value })}
+            />
+            <button 
+              type="button" 
+              className="password-toggle"
+              onClick={() => setShowPassword(!showPassword)}
+              aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
         </div>
-        {loading && <p>Cargando...</p>}
+        {loading && <div className='login_loading'>Cargando...</div>}
         <div className='login_button'>
           <div onClick={() =>register()}>¿No tienes cuenta? click aquí</div>
           <button className='buttons_primary' onClick={onHandleLogin} disabled={loading}>

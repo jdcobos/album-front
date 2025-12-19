@@ -2,19 +2,17 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState, AppDispatch } from '../../store/index'
 import { GET_MULTIMEDIA } from '../../actions/multimedia.actions'
-import {isEmpty} from 'ramda'
 import Card from '../home/children/card.component'
 import "../../stylesheet/home/home.scss"
+import { isEmpty } from 'ramda'
 
 const Multimedia = () => {
       const dispatch = useDispatch<AppDispatch>()
       const { loading, multimedia } = useSelector((state: RootState) => state.multimedia)
     
       useEffect(()=>{
-         if(isEmpty(multimedia)){
             dispatch(GET_MULTIMEDIA())
-         }
-      },[multimedia]
+      },[]
     )
      
     return(
@@ -22,7 +20,7 @@ const Multimedia = () => {
             {loading ? "cargando...": 
             <>
                 <div className='cards-container'>
-                    {multimedia.map((item: any)=> <Card {...item}/> )}
+                    {!isEmpty(multimedia) ? multimedia.map((item: any)=> <Card {...item}/> ) : <div className='cards-message'>Todavía nadie ha compartido un momento. ¡Sé el primero haciendo clic en el botón “+”!</div>}
                 </div>
             </> 
             }
