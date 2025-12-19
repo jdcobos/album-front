@@ -4,7 +4,7 @@ import {
   Toast,
   ConfigProvider,
   Button,
-  Input,
+  TextArea,
 } from "antd-mobile";
 import "../../../stylesheet/profile/profile.scss";
 import { useEffect, useState, useRef, useCallback } from "react";
@@ -292,7 +292,7 @@ const AddMultimedia = ({ open, setOpen }: any) => {
             >
               Tomar foto con la cámara
             </Button>
-            <Input
+            <TextArea
               placeholder="Describe este momento..."
               value={description}
               onChange={setDescription}
@@ -300,7 +300,13 @@ const AddMultimedia = ({ open, setOpen }: any) => {
                 margin: '16px 0',
                 '--text-align': 'center',
                 '--placeholder-color': '#999',
+                minHeight: '80px',
+                borderRadius: '8px',
+                padding: '8px',
+                fontSize: '14px',
+                border: '1px solid #eee'
               }}
+              autoSize={{ minRows: 3, maxRows: 5 }}
             />
             <div style={{ display: 'flex', gap: '12px', width: '100%' }}>
               <Button
