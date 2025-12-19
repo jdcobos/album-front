@@ -18,16 +18,23 @@ const Header = () => {
     return(
         <div className="headerProfile">
             <div className="headerProfile_content">
-                <div>
+                <div className="headerProfile_content-contentUser">
+                    <div className="headerProfile_content-user">
+                        {user.name && user.name.split(" ").slice(0, 2).map((p: string) => p[0]).join("").toUpperCase()}
+                    </div>
                     {user.name}
                 </div>
                 <div>
-                    cantidad de momentos compartidos: {countUsers}
+                    Cantidad de momentos compartidos 
+                    <div>{countUsers}</div>
                 </div>
             </div>
-            <div className="headerProfile_button">
-                Cerrar sesión
+            <div className="headerProfile_contentButton">
+                <div className="headerProfile_button">
+                    Cerrar sesión
+                </div>
             </div>
+            
         </div>
     )
 }
