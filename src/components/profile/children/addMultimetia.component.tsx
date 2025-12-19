@@ -10,6 +10,12 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import enUS from "antd-mobile/es/locales/en-US";
 import Webcam from "react-webcam";
 
+interface FileItem {
+  url: string;
+  name?: string;
+  type?: string;
+}
+
 const MobileFrame = ({ children }: { children: React.ReactNode }) => (
   <div className="mobile-frame">
     {children}
@@ -55,19 +61,38 @@ const AddMultimedia = ({ open, setOpen }: any) => {
     }
   }, [webcamRef]);
 
-  const mockUpload = async (file: File) => {
-    return new Promise<{ url: string }>((resolve, reject) => {
-      setTimeout(() => {
-        if (file.size > 5 * 1024 * 1024) {
-          Toast.show("La imagen es demasiado grande");
-          reject(new Error("File too large"));
-          return;
-        }
+  const mockUpload = async (file: File): Promise<FileItem> => {
+    return new Promise((resolve, reject) => {
+      // Check file size (15MB max)
+      const maxSizeMB = 15;
+      if (file.size > maxSizeMB * 1024 * 1024) {
+        Toast.show(`La imagen es demasiado grande (máx. ${maxSizeMB}MB)`);
+        reject(new Error(`File too large (max ${maxSizeMB}MB)`));
+        return;
+      }
 
+      // Check file type
+      const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/jpg'];
+      if (!validTypes.includes(file.type.toLowerCase())) {
+        Toast.show("Formato de archivo no soportado. Use JPG, PNG, GIF o WebP");
+        reject(new Error("Invalid file type"));
+        return;
+      }
+
+      try {
+        // Create a preview URL for the file
+        const previewUrl = URL.createObjectURL(file);
+        
+        // Return the file data in the expected format
         resolve({
-          url: URL.createObjectURL(file),
+          url: previewUrl,
+          name: file.name,
+          type: file.type,
         });
-      }, 1000);
+      } catch (error) {
+        console.error("Error creating preview:", error);
+        reject(new Error("Error al procesar la imagen"));
+      }
     });
   };
 
