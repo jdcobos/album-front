@@ -3,4 +3,5 @@ export interface Irequest  {
     method: string,
     route: string,
     params?: object,
+    customHeaders?: object
 }

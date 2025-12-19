@@ -1,8 +1,49 @@
-.home{
+.home {
     display: flex;
     flex-direction: column;
+    position: relative;
+    min-height: 100vh;
 }
 
 .cards-container > .card:last-child {
-  margin-bottom: 15%;
+    margin-bottom: 15%;
+}
+
+// Floating Action Button
+.floating-add-button {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #051132;
+    color: white;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover {
+        transform: scale(1.05);
+        background-color: #1a2a52;
+    }
+    
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+// Adjust for mobile devices
+@media (max-width: 768px) {
+    .floating-add-button {
+        bottom: 90px;
+        right: 15px;
+    }
 }

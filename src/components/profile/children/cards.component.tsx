@@ -31,11 +31,11 @@ const Card = () => {
                 </div>
                 ))}
           </>}
-            {multimediaUser.length < 7 &&  
+       
             <div className="cardProfile_cardPlus" onClick={()=> setOpen(true)}>
                 <img src={Add}/>
                 Agregar un nuevo momento
-             </div>}
+             </div>
           </>
           <AddMultimedia open={open} setOpen={setOpen}/>
       </div>
