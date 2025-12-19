@@ -1,7 +1,138 @@
 .profile{
     margin-bottom: 60px;
 
+    &-popup {
+      --adm-popup-body-height: 100vh;
+      --adm-popup-body-position-bottom-height: 100vh;
+      .adm-popup-body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &-back-button {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        z-index: 1000;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        padding: 0;
+        background-color: #051132;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+      }
+    }
+
+    &-camera-container {
+      height: 100%;
+      width: 100%;
+      background-color: #000;
+      position: absolute;
+    }
+
+    &-camera-controls {
+      position: fixed;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      z-index: 10000;
+    }
+
+    &-capture-button {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      padding: 0;
+      background-color: white;
+      border: 4px solid #051132;
+    }
+
+    &-cancel-button {
+      position: absolute;
+      right: 20px;
+      bottom: 0;
+      color: white;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    &-upload-section {
+      margin-top: 25px;
+      text-align: center;
+    }
+
+    &-upload-title {
+      font-size: 16px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    &-upload-instruction {
+      font-size: 16px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    &-camera-button {
+      background-color: #051132;
+      border: 4px solid #051132;
+      margin-bottom: 12px;
+    }
+
+    &-close-button {
+      background-color: transparent;
+      color: #051132;
+      border: 2px solid #051132;
+      font-weight: bold;
+    }
+
+    &-img-uploader {
+      width: 250px;
+      height: 250px;
+      margin: 16px auto;
+      --cell-size: 250px;
+      --cell-color: #f5f5f5;
+      --cell-border: 2px dashed #d9d9d9;
+      --cell-border-radius: 8px;
+      --cell-active-border-color: #051132;
+      --cell-icon-size: 48px;
+    }
+
     &_img{
         
     }
+}
+
+.mobile-frame {
+  position: relative;
+  width: 100%;
+  max-width: 375px;
+  height: 700px;
+  margin: 20px auto;
+  overflow: hidden;
+  background-color: #000;
+  border-radius: 8px;
+  aspect-ratio: 9/16;
+  max-height: 80vh;
+
+  video, img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+  }
 }

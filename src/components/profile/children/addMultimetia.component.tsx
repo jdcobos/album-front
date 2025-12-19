@@ -5,25 +5,13 @@ import {
   ConfigProvider,
   Button,
 } from "antd-mobile";
+import "../../../stylesheet/profile/profile.scss";
 import { useEffect, useState, useRef, useCallback } from "react";
 import enUS from "antd-mobile/es/locales/en-US";
 import Webcam from "react-webcam";
 
 const MobileFrame = ({ children }: { children: React.ReactNode }) => (
-  <div
-    style={{
-      position: "relative",
-      width: "100%",
-      maxWidth: "375px",
-      height: "700px",
-      margin: "20px auto",
-      overflow: "hidden",
-      backgroundColor: "#000",
-      borderRadius: "8px",
-      aspectRatio: "9/16",
-      maxHeight: "80vh",
-    }}
-  >
+  <div className="mobile-frame">
     {children}
   </div>
 );
@@ -95,50 +83,20 @@ const AddMultimedia = ({ open, setOpen }: any) => {
       visible={openPopup}
       onMaskClick={() => onClose(false)}
       onClose={() => onClose(false)}
-      bodyStyle={{
-        height: "100%",
-      }}
-      style={
-        {
-          "--adm-popup-body-height": "100vh",
-          "--adm-popup-body-position-bottom-height": "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        } as React.CSSProperties
-      }
+      bodyStyle={{ height: '100%' }}
+      className="profile-popup"
     >
       {!showCamera && (
-        <div style={{ position: "absolute", top: 16, left: 16, zIndex: 1000 }}>
-          <Button
-            onClick={() => onClose(false)}
-            style={{
-              width: "40px",
-              height: "40px",
-              borderRadius: "50%",
-              padding: 0,
-              backgroundColor: "#051132",
-              color: "white",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              border: "none",
-            }}
-          >
-            ←
-          </Button>
-        </div>
+        <Button
+          onClick={() => onClose(false)}
+          className="profile-popup-back-button"
+        >
+          ←
+        </Button>
       )}
 
       {showCamera ? (
-        <div
-          style={{
-            height: "100%",
-            width: "100%",
-            backgroundColor: "#000",
-            position: "absolute",
-          }}
-        >
+        <div className="profile-camera-container">
           <MobileFrame>
             <Webcam
               audio={false}
@@ -148,75 +106,37 @@ const AddMultimedia = ({ open, setOpen }: any) => {
                 ...videoConstraints,
                 aspectRatio: 9 / 16,
               }}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                transform: "scaleX(-1)",
-              }}
             />
           </MobileFrame>
-          <div
-            style={{
-              position: "fixed",
-              bottom: "20px",
-              left: 0,
-              right: 0,
-              display: "flex",
-              justifyContent: "center",
-              gap: "20px",
-              zIndex: 10000,
-            }}
-          >
+          <div className="profile-camera-controls">
             <Button
               onClick={capture}
-              style={{
-                width: "70px",
-                height: "70px",
-                borderRadius: "50%",
-                padding: 0,
-                backgroundColor: "white",
-                border: "4px solid #051132",
-              }}
+              className="profile-capture-button"
             />
             <Button
               onClick={() => setShowCamera(false)}
-              style={{
-                position: "absolute",
-                right: "20px",
-                bottom: "0",
-                color: "white",
-                backgroundColor: "rgba(0,0,0,0.5)",
-              }}
+              className="profile-cancel-button"
             >
               Cancelar
             </Button>
           </div>
         </div>
       ) : (
-        <div style={{ marginTop: "25px" }}>
-          <div
-            style={{
-              fontSize: "16px",
-              marginBottom: "16px",
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "column",
-            }}
-          >
+        <div className="profile-upload-section">
+          <div className="profile-upload-title">
             Sube un momento desde la galeria click en el +
             <ConfigProvider
               locale={{
                 ...enUS,
                 ImageUploader: {
                   ...enUS.ImageUploader,
-                  uploading: "Subiendo imagen...",
-                  upload: "Subir imagen",
+                  uploading: 'Subiendo imagen...',
+                  upload: 'Subir imagen',
                 },
               }}
             >
               <ImageUploader
-                className="profile_img"
+                className="profile-img-uploader"
                 value={fileList}
                 onChange={setFileList}
                 upload={mockUpload}
@@ -227,41 +147,23 @@ const AddMultimedia = ({ open, setOpen }: any) => {
               />
             </ConfigProvider>
           </div>
-          <div
-            style={{
-              fontSize: "16px",
-              marginBottom: "16px",
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "column",
-            }}
-          >
+          <div className="profile-upload-instruction">
             O tambien puedes
           </div>
-
           <div style={{ marginTop: 16 }}>
             <Button
               color="primary"
               onClick={() => setShowCamera(true)}
               disabled={fileList.length > 0}
               block
-              style={{
-                backgroundColor: "#051132",
-                border: "4px solid #051132",
-                marginBottom: "12px",
-              }}
+              className="profile-camera-button"
             >
               Tomar foto con la cámara
             </Button>
             <Button
               onClick={() => onClose(false)}
               block
-              style={{
-                backgroundColor: "transparent",
-                color: "#051132",
-                border: "2px solid #051132",
-                fontWeight: "bold",
-              }}
+              className="profile-close-button"
             >
               Cancelar
             </Button>
