@@ -37,7 +37,7 @@ const Register = () => {
             alert("Las contraseñas no coinciden");
             return;
         }
-        dispatch(REGISTER({ name, email, password })).then((value) => {
+        dispatch(REGISTER({ name, email, password })).then(() => {
                 alert("Registrado exitosamente, serás redireccionado para que inicies sesión");
                 setTimeout(()=>{navigate("/");},1000)
         })
