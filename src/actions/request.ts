@@ -10,7 +10,7 @@ const Request  = async({authorization = true, method, route, params}: Irequest) 
         headers["Authorization"] = `Bearer ${token}`;
       }
     const instance = axios({
-        baseURL: `https://album-api-sooty.vercel.app/api/${route}`,
+        baseURL: `http://localhost:3000/api/${route}`,
         method,
         data: params,
         headers

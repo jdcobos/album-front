@@ -3,6 +3,7 @@ import { GET_USER } from "../../../actions/users.actions"
 import "../../../stylesheet/profile/children/header.scss"
 import type { AppDispatch, RootState } from "../../../store"
 import { useEffect } from "react"
+
 const Header = () => {
     const dispatch = useDispatch<AppDispatch>()
     const {  user } = useSelector((state: any) => state.user)
@@ -34,7 +35,6 @@ const Header = () => {
                     Cerrar sesión
                 </div>
             </div>
-            
         </div>
     )
 }
