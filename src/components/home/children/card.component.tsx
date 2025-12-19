@@ -4,11 +4,13 @@ import Footer from "./footer.component"
 
 const Card = ({createdAt, description,src, userId, _id, likes}: any) => {
     return(
-        <div className="card">
-          <img className="card_img" src={src}/>
-          <Action  multimediaId={_id} totalLikes={likes}/>
-          <Footer date={createdAt} description={description} name={userId.name} />
+       <div className="card">
+        <div className="card_img-container">
+          <img className="card_img" src={src} alt="User content" />
         </div>
+        <Action multimediaId={_id} totalLikes={likes} />
+        <Footer date={createdAt} description={description} name={userId.name} />
+      </div>
     )
 }
 

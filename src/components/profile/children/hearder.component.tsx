@@ -31,7 +31,15 @@ const Header = () => {
                 </div>
             </div>
             <div className="headerProfile_contentButton">
-                <div className="headerProfile_button">
+                <div 
+                    className="headerProfile_button"
+                    onClick={() => {
+                        localStorage.removeItem('token');
+                        localStorage.removeItem('id');
+                        window.location.reload();
+                    }}
+                    style={{ cursor: 'pointer' }}
+                >
                     Cerrar sesión
                 </div>
             </div>
