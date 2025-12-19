@@ -5,12 +5,23 @@ import type { AppDispatch } from "../../store"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { REGISTER } from '../../actions/auth.actions'
-const Register = () => {
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
+const Register = () => {
     const [form, setForm] = useState({name: "", email:"", password:"", confirmPassword:""})
+    const [showPassword, setShowPassword] = useState(false)
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>()
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword)
+    }
+
+    const toggleConfirmPasswordVisibility = () => {
+        setShowConfirmPassword(!showConfirmPassword)
+    }
   
     const onRegister = () => {
         const { name, email, password, confirmPassword } = form;
@@ -27,12 +38,8 @@ const Register = () => {
             return;
         }
         dispatch(REGISTER({ name, email, password })).then((value) => {
-            if (value?.payload?.register) {
                 alert("Registrado exitosamente, serás redireccionado para que inicies sesión");
                 setTimeout(()=>{navigate("/");},1000)
-            } else {
-                alert("Correo ya registrado");
-            }
         })
         .catch((error) => {
             console.error(error);
@@ -63,18 +70,34 @@ const Register = () => {
                     type="text"
                     onChange={(e) =>setForm({...form, email: e.target.value})}
                 />
-                <input
-                    className='input_primary'
-                    placeholder="Contraseña"
-                    type="password"
-                    onChange={(e) =>setForm({...form, password: e.target.value})}
-                />
-                <input
-                    className='input_primary'
-                    placeholder="Confirmar contraseña"
-                    type="password"
-                    onChange={(e) =>setForm({...form, confirmPassword: e.target.value})}
-                />
+                <div className="password-input-container">
+                    <input
+                        className='input_primary'
+                        placeholder="Contraseña"
+                        type={showPassword ? "text" : "password"}
+                        onChange={(e) =>setForm({...form, password: e.target.value})}
+                    />
+                    <span 
+                        className="password-toggle"
+                        onClick={togglePasswordVisibility}
+                    >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </span>
+                </div>
+                <div className="password-input-container">
+                    <input
+                        className='input_primary'
+                        placeholder="Confirmar contraseña"
+                        type={showConfirmPassword ? "text" : "password"}
+                        onChange={(e) =>setForm({...form, confirmPassword: e.target.value})}
+                    />
+                    <span 
+                        className="password-toggle"
+                        onClick={toggleConfirmPasswordVisibility}
+                    >
+                        {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                    </span>
+                </div>
                <button className="register_content_button" onClick={() => onRegister()}>Registrarse</button>
             </div>
           </div>
